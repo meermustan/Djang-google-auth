@@ -1,0 +1,27 @@
+{% load socialaccount %}
+<html>
+
+<head>
+    <title>Google Registration</title>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <h1>My Google Login Project</h1>
+    <p>Welcome, {{ user.username }} !</p>
+    
+    <img style="border: 1px solid black;border-radius: 50%;" src='{{ user.socialaccount_set.all.0.get_avatar_url }}' alt="">
+    <p>{{ user.socialaccount_set.all.0.uid }}</p>
+    <p>{{ user.socialaccount_set.all.0.date_joined}}</p>
+    <p>{{ user.socialaccount_set.all.0.last_login}}</p>
+    <p>{{ user.socialaccount_set.all.0.extra_data.name }}</p>
+
+
+    {% else %}
+        <h1>My Google Login Project</h1>
+        <a href="{% provider_login_url 'google' %}">Login with Google</a>
+    {% endif %}
+
+</body>
+
+</html>
